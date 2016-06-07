@@ -11,6 +11,7 @@ public:
 	Polynom();
 	Polynom(int, float*);
 	Polynom(Polynom&);
+	Polynom(float);
 
 	~Polynom();
 
