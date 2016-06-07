@@ -13,6 +13,11 @@ Polynom::Polynom(Polynom&p){
 	values = new float[length];
 	memcpy_s(values, length*sizeof(float), p.values, p.length*sizeof(float));
 }
+Polynom::Polynom(float f){
+	length=1;
+	values=new float[1];
+	values[0]=f;
+}
 
 Polynom::~Polynom(){
 	length = 0;
@@ -48,4 +53,103 @@ void Polynom::Print(){
 		}
 	}
 
+}
+
+Polynom Polynom::operator+(Polynom p){
+	bool tm=length>p.length;
+	int xl=tm?length:p.length;
+	int nl=tm?p.length:length;
+	Polynom r;
+	r.length=xl;
+	r.values=new float[r.length];
+	for(int i=0;i<nl;i++)
+		r.values[i]=values[i]+p.values[i];
+	for(int i=nl;i<xl;i++)
+		r.values[i]=tm?values[i]:p.values[i];
+	return r;
+}
+Polynom Polynom::operator-(Polynom p){
+	return *(this)+(-p);
+}
+Polynom Polynom::operator*(Polynom p){
+	//Умножение полином на полином - нетривиальная задача. Займусь позже
+	return *this;
+}
+Polynom Polynom::operator/(Polynom p){
+	//Деление полином на полином - нетривиальная задача. Займусь позже
+	return *this;
+}
+
+Polynom operator+(float f, Polynom p){
+	return Polynom(f)+p;
+}
+Polynom operator-(float f, Polynom p){
+	return f+(-p);
+}
+Polynom operator*(float f, Polynom p){
+	return Polynom(f)*p;
+}
+Polynom operator/(float f, Polynom p){
+	return Polynom(f)/p;
+}
+
+Polynom Polynom::operator+(float f){
+	return *(this)+Polynom(f);
+}
+Polynom Polynom::operator-(float f){
+	return *(this)-Polynom(f);
+}
+Polynom Polynom::operator*(float f){
+	return *(this)*Polynom(f);
+}
+Polynom Polynom::operator/(float f){
+	return *(this)/Polynom(f);
+}
+
+Polynom Polynom::operator++(){ //++p
+	if(length==0){
+		length=1;
+		values=new float[1];
+		values[0]=1;
+	}else
+		values[0]++;
+	return *this;
+}
+Polynom Polynom::operator++(int){ //p++
+	Polynom r(*this);
+	if(length==0){
+		length=1;
+		values=new float[1];
+		values[0]=1;
+	}else
+		values[0]++;
+	return r;
+}
+Polynom Polynom::operator--(){ //--p
+	if(length==0){
+		length=1;
+		values=new float[1];
+		values[0]=-1;
+	}else
+		values[0]--;
+	return *this;
+}
+Polynom Polynom::operator--(int){ //p--
+	Polynom r(*this);
+	if(length==0){
+		length=1;
+		values=new float[1];
+		values[0]=-1;
+	}else
+		values[0]--;
+	return r;
+}
+Polynom Polynom::operator-(){
+	Polynom r(*this);
+	for(int i=0;i<r.length;i++)
+		r.values[i]*=-1;
+	return r;
+}
+Polynom Polynom::operator+(){
+	return *this;
 }
