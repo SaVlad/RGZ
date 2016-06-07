@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "testing.h"
-#include "polynom.h"
 
 int main(){
+	Testing tests;
+	system("pause");
 	return 0;
 }
 
