@@ -1,9 +1,13 @@
 #pragma once
+#include "stdafx.h"
 #ifndef TESTING_H
 #define TESTING_H
-#include "stdafx.h"
+#include "polynom.h"
 
 class Testing{
+private:
+	int l1, l2;
+	float *v1, *v2, f;
 public:
 	Testing();
 

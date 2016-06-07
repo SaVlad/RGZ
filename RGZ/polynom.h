@@ -1,7 +1,7 @@
 #pragma once
+#include "stdafx.h"
 #ifndef POLYNOM_H
 #define POLYNOM_H
-#include "stdafx.h"
 
 class Polynom{
 private:
