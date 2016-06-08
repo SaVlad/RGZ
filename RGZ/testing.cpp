@@ -2,7 +2,7 @@
 #include "testing.h"
 //Какую часть программы тестировать
 //В конечной программе будет тестироваться все
-#define T_PRINT
+#define T_PP
 
 float* __read(int*l){
 	printf("Length: ");
@@ -19,14 +19,14 @@ float* __read(int*l){
 Testing::Testing(){
 	printf(">Testing start\n");
 	printf("Polynom 1:\n");
-	v1=__read(&l1);
+	v1 = __read(&l1);
 
-	#ifdef T_CON or T_PP or T_P or T_LOGIC
+	#if defined(T_CON) || defined(T_PP) || defined(T_P) || defined(T_LOGIC)
 	printf("Polynom 2:\n");
-	v2=__read(&l2);
+	v2 = __read(&l2);
 	#endif
 
-	#ifdef T_FP or T_PF or T_F
+	#if defined(T_FP) || defined(T_PF) || defined(T_F)
 	printf("Base number:\n");
 	scanf("%f", &f);
 	#endif
@@ -118,7 +118,7 @@ void Testing::ConstructorPar(){
 }
 void Testing::ConstructorClo(){
 	printf(">Clone constructor\n");
-	Polynom p1(l1,v1);
+	Polynom p1(l1, v1);
 	Polynom p2(p1);
 	printf("Expected: ");
 	p1.Print();
@@ -129,9 +129,120 @@ void Testing::ConstructorClo(){
 void Testing::Print(){
 	printf(">Print testing\n");
 	Polynom p(l1, v1);
-	printf("Values[%d]:",l1);
+	printf("Values[%d]:", l1);
 	for(int i = l1 - 1; i >= 0; printf(" %.2f", v1[i--]));
 	printf("\nPrint:      ");
+	p.Print();
+	printf("\n");
+}
+
+void Testing::ppAdd(){
+	printf(">Polynom+Polynom\n");
+	Polynom p1(l1, v1);
+	Polynom p2(l2, v2);
+	printf("Values[%d,%d]:", l1, l2);
+	p1.PrintVals();
+	printf("\n            ");
+	p2.PrintVals();
+	printf("\nResult:      ");
+	(p1 + p2).PrintVals();
+	printf("\n");
+}
+void Testing::ppSub(){
+	printf(">Polynom-Polynom\n");
+	Polynom p1(l1, v1);
+	Polynom p2(l2, v2);
+	printf("Values[%d,%d]:", l1, l2);
+	p1.PrintVals();
+	printf("\n            ");
+	p2.PrintVals();
+	printf("\nResult:      ");
+	(p1 - p2).PrintVals();
+	printf("\n");
+}
+void Testing::ppMul(){
+	printf(">Polynom*Polynom\n");
+	Polynom p1(l1, v1);
+	Polynom p2(l2, v2);
+	printf("Values[%d,%d]:", l1, l2);
+	p1.PrintVals();
+	printf("\n            ");
+	p2.PrintVals();
+	printf("\nResult:      ");
+	(p1 * p2).PrintVals();
+	printf("\n");
+}
+void Testing::ppDiv(){
+	printf(">Polynom/Polynom\n");
+	Polynom p1(l1, v1);
+	Polynom p2(l2, v2);
+	printf("Values[%d,%d]:", l1, l2);
+	p1.PrintVals();
+	printf("\n            ");
+	p2.PrintVals();
+	printf("\nResult:      ");
+	(p1 / p2).PrintVals();
+	printf("\n");
+}
+
+void Testing::incPost(){
+	printf(">Postfix increment\n");
+	Polynom p(l1, v1);
+	printf("Values[%d]:", l1);
+	for(int i = l1 - 1; i >= 0; printf(" %.2f", v1[i--]));
+	printf("\nIncr:      ");
+	(p++).Print();
+	printf("\nAfter:     ");
+	p.Print();
+	printf("\n");
+}
+void Testing::decPost(){
+	printf(">Postfix decrement\n");
+	Polynom p(l1, v1);
+	printf("Values[%d]:", l1);
+	for(int i = l1 - 1; i >= 0; printf(" %.2f", v1[i--]));
+	printf("\nDecr:      ");
+	(p--).Print();
+	printf("\nAfter:     ");
+	p.Print();
+	printf("\n");
+}
+void Testing::incPref(){
+	printf(">Prefix increment\n");
+	Polynom p(l1, v1);
+	printf("Values[%d]:", l1);
+	for(int i = l1 - 1; i >= 0; printf(" %.2f", v1[i--]));
+	printf("\nIncr:      ");
+	(++p).Print();
+	printf("\n");
+}
+void Testing::decPref(){
+	printf(">Prefix decrement\n");
+	Polynom p(l1, v1);
+	printf("Values[%d]:", l1);
+	for(int i = l1 - 1; i >= 0; printf(" %.2f", v1[i--]));
+	printf("\nDecr:      ");
+	(--p).Print();
+	printf("\n");
+}
+
+void Testing::unNeg(){
+	printf(">Unary negative\n");
+	Polynom p(l1, v1);
+	printf("Values[%d]:", l1);
+	for(int i = l1 - 1; i >= 0; printf(" %.2f", v1[i--]));
+	p = -p;
+	printf("\nNegative:  ");
+	p.Print();
+	printf("\n");
+}
+void Testing::unPos(){
+	printf(">Unary positive\n");
+	Polynom p(l1, v1);
+	printf("Values[%d]:", l1);
+	for(int i = l1 - 1; i >= 0; printf(" %.2f", v1[i--]));
+	p = +p;
+	printf("\nPositive:  ");
 	p.Print();
 	printf("\n");
 }

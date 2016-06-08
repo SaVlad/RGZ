@@ -1,10 +1,12 @@
-#pragma once
 #include "stdafx.h"
+#pragma once
 #ifndef POLYNOM_H
 #define POLYNOM_H
 
 class Polynom{
 private:
+	bool disposed;
+	int id;
 	int length;
 	float*values;
 public:
@@ -16,6 +18,7 @@ public:
 	~Polynom();
 
 	void Print();
+	void PrintVals();
 
 	Polynom operator+(Polynom);
 	Polynom operator-(Polynom);
@@ -38,6 +41,7 @@ public:
 	void operator-=(float);
 	void operator*=(float);
 	void operator/=(float);
+	Polynom&operator=(Polynom&);
 
 	Polynom operator++();
 	Polynom operator++(int);

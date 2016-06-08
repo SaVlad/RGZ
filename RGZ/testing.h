@@ -1,5 +1,5 @@
-#pragma once
 #include "stdafx.h"
+#pragma once
 #ifndef TESTING_H
 #define TESTING_H
 #include "polynom.h"
