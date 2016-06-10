@@ -2,7 +2,6 @@
 #pragma once
 #ifndef TESTING_H
 #define TESTING_H
-#include "polynom.h"
 
 class Testing{
 private:
@@ -10,6 +9,7 @@ private:
 	float *v1, *v2, f;
 public:
 	Testing();
+	void Start();
 
 	void ConstructorDef();
 	void ConstructorPar();
@@ -20,11 +20,9 @@ public:
 	void ppAdd();
 	void ppSub();
 	void ppMul();
-	void ppDiv();
 	void fpAdd();
 	void fpSub();
 	void fpMul();
-	void fpDiv();
 	void pfAdd();
 	void pfSub();
 	void pfMul();
@@ -33,7 +31,6 @@ public:
 	void Addp();
 	void Subp();
 	void Mulp();
-	void Divp();
 	void Addf();
 	void Subf();
 	void Mulf();
@@ -47,8 +44,6 @@ public:
 	void unPos();
 	void unNeg();
 
-	void Less();
-	void Greater();
 	void Equals();
 	void notEquals();
 

@@ -5,8 +5,6 @@
 
 class Polynom{
 private:
-	bool disposed;
-	int id;
 	int length;
 	float*values;
 public:
@@ -23,24 +21,21 @@ public:
 	Polynom operator+(Polynom);
 	Polynom operator-(Polynom);
 	Polynom operator*(Polynom);
-	Polynom operator/(Polynom);
 	friend Polynom operator+(float, Polynom);
 	friend Polynom operator-(float, Polynom);
 	friend Polynom operator*(float, Polynom);
-	friend Polynom operator/(float, Polynom);
 	Polynom operator+(float);
 	Polynom operator-(float);
 	Polynom operator*(float);
 	Polynom operator/(float);
 
-	void operator+=(Polynom);
-	void operator-=(Polynom);
-	void operator*=(Polynom);
-	void operator/=(Polynom);
-	void operator+=(float);
-	void operator-=(float);
-	void operator*=(float);
-	void operator/=(float);
+	Polynom&operator+=(Polynom&);
+	Polynom&operator-=(Polynom&);
+	Polynom&operator*=(Polynom&);
+	Polynom&operator+=(float);
+	Polynom&operator-=(float);
+	Polynom&operator*=(float);
+	Polynom&operator/=(float);
 	Polynom&operator=(Polynom&);
 
 	Polynom operator++();
@@ -50,8 +45,6 @@ public:
 	Polynom operator-();
 	Polynom operator+();
 
-	bool operator<(Polynom);
-	bool operator>(Polynom);
 	bool operator==(Polynom);
 	bool operator!=(Polynom);
 

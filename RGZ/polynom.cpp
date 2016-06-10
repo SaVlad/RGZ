@@ -1,29 +1,17 @@
 #include "stdafx.h"
-#include "polynom.h"
-int li = 0;
-
-Polynom*ls[10];
+#define PREC 0 //Кол-во знаков после запятой
 
 Polynom::Polynom():Polynom(0, 0){}
 Polynom::Polynom(int l, float*v){
-	disposed = false;
-	ls[id = li++] = this;
 	length = l;
 	values = new float[l];
 	if(v)
 		memcpy_s(values, l*sizeof(float), v, l*sizeof(float));
 }
 Polynom::Polynom(Polynom&p){
-	/*disposed = false;
-	ls[id = li++] = this;
-	length = p.length;
-	values = new float[length];
-	memcpy_s(values, length*sizeof(float), p.values, p.length*sizeof(float));*/
 	operator=(p);
 }
 Polynom::Polynom(float f){
-	disposed = false;
-	ls[id = li++] = this;
 	length = 1;
 	values = new float[1];
 	values[0] = f;
@@ -33,22 +21,20 @@ Polynom::~Polynom(){
 	delete[] values;
 	length = 0;
 	values = NULL;
-	disposed = true;
 }
-
 
 void Polynom::Print(){
 	if(length == 0){
 		printf("0");
 	} else if(length == 1){
-		printf("%.2f", values[0]);
+		printf("%.*f", PREC, values[0]);
 	} else{
 		float v = values[length - 1];
 		if(v != 0){
 			if(v == -1)
 				printf("-");
 			if(fabsf(v) != 1)
-				printf("%.2f*", v);
+				printf("%.*f*", PREC, v);
 			printf("x^%d ", length - 1);
 		}
 		for(int i = length - 2; i > 0; i--){
@@ -59,20 +45,20 @@ void Polynom::Print(){
 			if(v == -1)
 				printf("-");
 			if(fabsf(v) != 1)
-				printf("%.2f*", v);
+				printf("%.*f*", PREC, v);
 			printf("x^%d ", i);
 		}
 		v = values[0];
 		if(v != 0){
 			if(v > 0)
 				printf("+");
-			printf("%.2f", v);
+			printf("%.*f", PREC, v);
 		}
 	}
 }
 
 void Polynom::PrintVals(){
-	for(int i = length - 1; i >= 0; printf(" %.2f", values[i--]));
+	for(int i = length - 1; i >= 0; printf(" %.*f", PREC, values[i--]));
 }
 
 Polynom Polynom::operator+(Polynom p){
@@ -92,14 +78,16 @@ Polynom Polynom::operator-(Polynom p){
 	return *(this) + (-p);
 }
 Polynom Polynom::operator*(Polynom p){
-	//Умножение полином на полином - нетривиальная задача. Займусь позже
-	printf("TODO");
-	return *this;
-}
-Polynom Polynom::operator/(Polynom p){
-	//Деление полином на полином - нетривиальная задача. Займусь позже
-	printf("TODO");
-	return *this;
+	int n = length - 1;
+	int m = p.length - 1;
+	int r = n + m;
+	Polynom p3(r + 1, new float[r + 1]{0});
+	for(int k = 0; k <= r; k++){
+		for(int i = n - k, j = m; i <= n; i++, j--){
+			p3.values[r - k] += (i < 0 ? 0 : values[i]) * (j < 0 ? 0 : p.values[j]);
+		}
+	}
+	return p3;
 }
 
 Polynom operator+(float f, Polynom p){
@@ -110,9 +98,6 @@ Polynom operator-(float f, Polynom p){
 }
 Polynom operator*(float f, Polynom p){
 	return Polynom(f)*p;
-}
-Polynom operator/(float f, Polynom p){
-	return Polynom(f) / p;
 }
 
 Polynom Polynom::operator+(float f){
@@ -125,7 +110,10 @@ Polynom Polynom::operator*(float f){
 	return *(this)*Polynom(f);
 }
 Polynom Polynom::operator/(float f){
-	return *(this) / Polynom(f);
+	Polynom p(length, values);
+	for(int i = 0; i < length; i++)
+		p.values[i] /= f;
+	return p;
 }
 
 Polynom Polynom::operator++(){ //++p
@@ -177,10 +165,48 @@ Polynom Polynom::operator+(){
 }
 
 Polynom&Polynom::operator=(Polynom&p){
-	disposed = false;
-	ls[id = li++] = this;
 	length = p.length;
 	values = new float[length];
 	memcpy_s(values, length*sizeof(float), p.values, p.length*sizeof(float));
 	return *this;
+}
+
+Polynom&Polynom::operator+=(Polynom&p){
+	return *this = *this + p;
+}
+Polynom&Polynom::operator-=(Polynom&p){
+	return *this = *this - p;
+}
+Polynom&Polynom::operator*=(Polynom&p){
+	return *this = *this * p;
+}
+Polynom&Polynom::operator+=(float f){
+	return *this = *this + f;
+}
+Polynom&Polynom::operator-=(float f){
+	return *this = *this - f;
+}
+Polynom&Polynom::operator*=(float f){
+	return *this = *this * f;
+}
+Polynom&Polynom::operator/=(float f){
+	return *this = *this / f;
+}
+
+bool Polynom::operator==(Polynom p){
+	if(length != p.length)return false;
+	for(int i = 0; i < length; i++)
+		if(values[i] != p.values[i])return false;
+	return true;
+}
+bool Polynom::operator!=(Polynom p){
+	return !(*this == p);
+}
+
+float Polynom::operator[](int i){
+	if(i < 0 || i >= length)return 0;
+	return values[i];
+}
+float Polynom::operator()(int i){
+	return (*this)[i];
 }
