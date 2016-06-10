@@ -49,6 +49,11 @@ public:
 
 	void sIndexer();
 	void rIndexer();
+
+	void daAdd();
+	void daDel();
+	void daGet();
+	void daFind();
 };
 
 #endif

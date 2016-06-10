@@ -27,7 +27,9 @@ void Testing::Start(){
 
 	printf("Base number:\n");
 	//scanf("%f", &f);
-	f = 2;
+	f = 1;
+
+	printf("\n");
 
 	ConstructorDef();
 	ConstructorPar();
@@ -70,6 +72,11 @@ void Testing::Start(){
 
 	sIndexer();
 	rIndexer();
+
+	daAdd();
+	daDel();
+	daGet();
+	daFind();
 }
 
 void Testing::ConstructorDef(){
@@ -77,14 +84,14 @@ void Testing::ConstructorDef(){
 	Polynom p;
 	printf("Expected: 0\nGot:      ");
 	p.Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::ConstructorPar(){
 	printf(">Parametric constructor\n");
 	Polynom p(l1, v1);
 	printf("Got:      ");
 	p.Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::ConstructorClo(){
 	printf(">Clone constructor\n");
@@ -94,7 +101,7 @@ void Testing::ConstructorClo(){
 	p1.Print();
 	printf("\nGot:      ");
 	p2.Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::Print(){
 	printf(">Print testing\n");
@@ -103,7 +110,7 @@ void Testing::Print(){
 	p.PrintVals();
 	printf("\nPrint:      ");
 	p.Print();
-	printf("\n");
+	printf("\n\n");
 }
 
 void Testing::ppAdd(){
@@ -116,7 +123,7 @@ void Testing::ppAdd(){
 	p2.Print();
 	printf("\nResult:      ");
 	(p1 + p2).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::ppSub(){
 	printf(">Polynom-Polynom\n");
@@ -128,7 +135,7 @@ void Testing::ppSub(){
 	p2.Print();
 	printf("\nResult:      ");
 	(p1 - p2).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::ppMul(){
 	printf(">Polynom*Polynom\n");
@@ -140,7 +147,7 @@ void Testing::ppMul(){
 	p2.Print();
 	printf("\nResult:      ");
 	(p1 * p2).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::fpAdd(){
 	printf(">Number+Polynom\n");
@@ -150,7 +157,7 @@ void Testing::fpAdd(){
 	printf("\nNumber: %.2f", f);
 	printf("\nResult: ");
 	(f + p).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::fpSub(){
 	printf(">Number-Polynom\n");
@@ -160,7 +167,7 @@ void Testing::fpSub(){
 	printf("\nNumber: %.2f", f);
 	printf("\nResult: ");
 	(f - p).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::fpMul(){
 	printf(">Number*Polynom\n");
@@ -170,7 +177,7 @@ void Testing::fpMul(){
 	printf("\nNumber: %.2f", f);
 	printf("\nResult: ");
 	(f * p).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::pfAdd(){
 	printf(">Polynom+Number\n");
@@ -180,7 +187,7 @@ void Testing::pfAdd(){
 	printf("\nNumber: %.2f", f);
 	printf("\nResult: ");
 	(p+f).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::pfSub(){
 	printf(">Polynom-Number\n");
@@ -190,7 +197,7 @@ void Testing::pfSub(){
 	printf("\nNumber: %.2f", f);
 	printf("\nResult: ");
 	(p - f).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::pfMul(){
 	printf(">Polynom*Number\n");
@@ -200,7 +207,7 @@ void Testing::pfMul(){
 	printf("\nNumber: %.2f", f);
 	printf("\nResult: ");
 	(p * f).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::pfDiv(){
 	printf(">Polynom/Number\n");
@@ -210,7 +217,7 @@ void Testing::pfDiv(){
 	printf("\nNumber: %.2f", f);
 	printf("\nResult: ");
 	(p / f).Print();
-	printf("\n");
+	printf("\n\n");
 }
 
 void Testing::Addp(){
@@ -223,7 +230,7 @@ void Testing::Addp(){
 	p2.Print();
 	printf("\nResult:      ");
 	(p1 += p2).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::Subp(){
 	printf(">Polynom-=Polynom\n");
@@ -235,7 +242,7 @@ void Testing::Subp(){
 	p2.Print();
 	printf("\nResult:      ");
 	(p1 -= p2).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::Mulp(){
 	printf(">Polynom*=Polynom\n");
@@ -247,7 +254,7 @@ void Testing::Mulp(){
 	p2.Print();
 	printf("\nResult:      ");
 	(p1 *= p2).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::Addf(){
 	printf(">Polynom+=Number\n");
@@ -257,7 +264,7 @@ void Testing::Addf(){
 	printf("\nNumber: %.2f", f);
 	printf("\nResult: ");
 	(p += f).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::Subf(){
 	printf(">Polynom-=Number\n");
@@ -267,7 +274,7 @@ void Testing::Subf(){
 	printf("\nNumber: %.2f", f);
 	printf("\nResult: ");
 	(p -= f).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::Mulf(){
 	printf(">Polynom*=Number\n");
@@ -277,7 +284,7 @@ void Testing::Mulf(){
 	printf("\nNumber: %.2f", f);
 	printf("\nResult: ");
 	(p *= f).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::Divf(){
 	printf(">Polynom/=Number\n");
@@ -287,7 +294,7 @@ void Testing::Divf(){
 	printf("\nNumber: %.2f", f);
 	printf("\nResult: ");
 	(p /= f).Print();
-	printf("\n");
+	printf("\n\n");
 }
 
 void Testing::incPost(){
@@ -299,7 +306,7 @@ void Testing::incPost(){
 	(p++).Print();
 	printf("\nAfter:     ");
 	p.Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::decPost(){
 	printf(">Postfix decrement\n");
@@ -310,7 +317,7 @@ void Testing::decPost(){
 	(p--).Print();
 	printf("\nAfter:     ");
 	p.Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::incPref(){
 	printf(">Prefix increment\n");
@@ -319,7 +326,7 @@ void Testing::incPref(){
 	p.PrintVals();
 	printf("\nIncr:      ");
 	(++p).Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::decPref(){
 	printf(">Prefix decrement\n");
@@ -328,7 +335,7 @@ void Testing::decPref(){
 	p.PrintVals();
 	printf("\nDecr:      ");
 	(--p).Print();
-	printf("\n");
+	printf("\n\n");
 }
 
 void Testing::unNeg(){
@@ -339,7 +346,7 @@ void Testing::unNeg(){
 	p = -p;
 	printf("\nNegative:  ");
 	p.Print();
-	printf("\n");
+	printf("\n\n");
 }
 void Testing::unPos(){
 	printf(">Unary positive\n");
@@ -349,7 +356,7 @@ void Testing::unPos(){
 	p = +p;
 	printf("\nPositive:  ");
 	p.Print();
-	printf("\n");
+	printf("\n\n");
 }
 
 void Testing::Equals(){
@@ -360,7 +367,7 @@ void Testing::Equals(){
 	p1.Print();
 	printf("\n             ");
 	p2.Print();
-	printf("\nResult:      %s\n", p1==p2 ? "True" : "False");
+	printf("\nResult:      %s\n\n", p1==p2 ? "True" : "False");
 }
 void Testing::notEquals(){
 	printf(">Polynom<Polynom\n");
@@ -370,7 +377,7 @@ void Testing::notEquals(){
 	p1.Print();
 	printf("\n             ");
 	p2.Print();
-	printf("\nResult:      %s\n", p1!=p2 ? "True" : "False");
+	printf("\nResult:      %s\n\n", p1!=p2 ? "True" : "False");
 }
 
 void Testing::sIndexer(){
@@ -379,7 +386,7 @@ void Testing::sIndexer(){
 	printf("Values[%d]: ", l1);
 	p.PrintVals();
 	printf("\nIndex:  %.0f", f);
-	printf("\nResult: %.2f\n", p[(int)f]);
+	printf("\nResult: %.2f\n\n", p[(int)f]);
 }
 void Testing::rIndexer(){
 	printf(">Polynom()\n");
@@ -387,5 +394,76 @@ void Testing::rIndexer(){
 	printf("Values[%d]: ", l1);
 	p.PrintVals();
 	printf("\nIndex:  %.0f", f);
-	printf("\nResult: %.2f\n", p((int)f));
+	printf("\nResult: %.2f\n\n", p((int)f));
+}
+
+void Testing::daAdd(){
+	printf(">Array.add\n");
+	Array<Polynom> arr;
+	arr.add(Polynom(l1, v1));
+	printf("Length: %d\nSize:   %d\nValues: \n", arr.getSize(), arr.getAllocated());
+	for(int i = 0; i < arr.getSize(); i++){
+		printf("    %2d: ", i);
+		arr[i].Print();
+		printf("\n");
+	}
+	arr.add(Polynom(l2, v2));
+	printf("After add:\n");
+	printf("Length: %d\nSize:   %d\nValues: \n", arr.getSize(), arr.getAllocated());
+	for(int i = 0; i < arr.getSize(); i++){
+		printf("    %2d: ", i);
+		arr[i].Print();
+		printf("\n");
+	}
+	printf("\n");
+}
+void Testing::daDel(){
+	printf(">Array.del\n");
+	Array<Polynom> arr;
+	arr.add(Polynom(l1, v1));
+	arr.add(Polynom(l2, v2));
+	printf("Length: %d\nSize:   %d\nValues: \n", arr.getSize(), arr.getAllocated());
+	for(int i = 0; i < arr.getSize(); i++){
+		printf("    %2d: ", i);
+		arr[i].Print();
+		printf("\n");
+	}
+	arr.del(0);
+	printf("After del:\n");
+	printf("Length: %d\nSize:   %d\nValues: \n", arr.getSize(), arr.getAllocated());
+	for(int i = 0; i < arr.getSize(); i++){
+		printf("    %2d: ", i);
+		arr[i].Print();
+		printf("\n");
+	}
+	printf("\n");
+}
+void Testing::daGet(){
+	printf(">Array.get\n");
+	Array<Polynom> arr;
+	arr.add(Polynom(l1, v1));
+	arr.add(Polynom(l2, v2));
+	printf("Length: %d\nSize:   %d\nValues: \n", arr.getSize(), arr.getAllocated());
+	for(int i = 0; i < arr.getSize(); i++){
+		printf("    %2d: ", i);
+		arr[i].Print();
+		printf("\n");
+	}
+	printf("Element at index %d: ", (int)f);
+	arr[(int)f].Print();
+	printf("\n\n");
+}
+void Testing::daFind(){
+	printf(">Array.find\n");
+	Array<Polynom> arr;
+	Polynom p(l1, v1);
+	arr.add(p);
+	arr.add(Polynom(l2, v2));
+	printf("Length: %d\nSize:   %d\nValues: \n", arr.getSize(), arr.getAllocated());
+	for(int i = 0; i < arr.getSize(); i++){
+		printf("    %2d: ", i);
+		arr[i].Print();
+		printf("\n");
+	}
+	printf("Index of first polynom: %d\n\n", arr.find(p));
 }

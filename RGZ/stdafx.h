@@ -5,5 +5,6 @@
 #include <string.h>
 #include <math.h>
 
-#include "testing.h"
+#include "dynarr.h"
 #include "polynom.h"
+#include "testing.h"
